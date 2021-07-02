@@ -1,0 +1,18 @@
+[sqlite]
+dbfile = "/data/apitesting.db"
+# 允许 silent error warn info 默认 warn
+loglevel = "info"
+
+[log]
+file_path = "/logs"
+file_name = "finance"
+# 允许 panic fatal error warn info debug trace
+level = "debug"
+stdout = false
+
+[[apitesting.default_account]]
+Name = "admin"
+Password = "r*!D@bY475qmHAFK"
+
+[storage]
+static = "/page"
