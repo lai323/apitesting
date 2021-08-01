@@ -1,11 +1,12 @@
 ## apitesting
 
+这是一个类似于 postman 的接口测试工具，可以通过 swagger 导入请求
+
+有和 postman 类似的测试脚本支持，支持多个请求前后依赖的测试
+
 #### 功能截图
 
-#### 这个是什么 ?
 
-类似于 postman 的接口测试工具
-有和 postman 类似的测试脚本支持，直接多个请求前后依赖的测试
 
 #### 为什么不直接使用 postman ?
 
@@ -15,6 +16,3 @@
 #### 使用的组件
 
 Vuejs / Element Plus / SQLite
-
-#### 构建
-

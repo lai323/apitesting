@@ -1,14 +1,16 @@
+
+addr = ":8000"
+
 [sqlite]
 dbfile = "/data/apitesting.db"
 # 允许 silent error warn info 默认 warn
 loglevel = "info"
 
 [log]
-file_path = "/logs"
-file_name = "finance"
-# 允许 panic fatal error warn info debug trace
+logdir = "/logs"
+logfile = "finance"
 level = "debug"
-stdout = false
+stdout = true
 
 [[apitesting.default_account]]
 Name = "admin"

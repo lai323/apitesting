@@ -1,13 +1,12 @@
-
 package cmd
 
 import (
-	"fmt"
-	"os"
 	"apitesting/config"
-	"github.com/spf13/afero"
+	"apitesting/logger"
+	"apitesting/server"
+	"fmt"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
+	"os"
 )
 
 var (
@@ -16,17 +15,7 @@ var (
 		Use:   "readygo module_name",
 		Short: "create empty project with cobra and spf13",
 		Run: func(cmd *cobra.Command, args []string) {
-			cmd.Help()
-			// Do Stuff Here
-		},
-	}
-	subCmd = &cobra.Command{
-		Use:   "subcmd",
-		Short: "sub command example",
-		Run: func(cmd *cobra.Command, args []string) {
-			// cmd.Help()
-			fmt.Println(viper.GetString("var"))
-			fmt.Println(viper.GetString("VarFromFile"))
+			server.Run()
 		},
 	}
 )
@@ -38,17 +27,13 @@ func Execute() {
 	}
 }
 func init() {
-	cobra.OnInitialize(initConfig)
-	rootCmd.PersistentFlags().StringVar(&configPath, "config", "", fmt.Sprintf("config file (default is %s)", config.DefaultConfigPath))
-	rootCmd.PersistentFlags().String("var", "ViperTest var", "use Viper for configuration")
-	viper.BindPFlag("var", rootCmd.PersistentFlags().Lookup("var"))
-	rootCmd.AddCommand(subCmd)
+	cobra.OnInitialize(initConfig, logger.InitLogger)
+	rootCmd.PersistentFlags().StringVar(&configPath, "config", "", "config file")
 }
 
 func initConfig() {
-	err := config.InitConfig(afero.NewOsFs(), configPath)
+	err := config.InitConfig(configPath)
 	if err != nil {
 		panic(err)
 	}
 }
-

@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -8,4 +7,3 @@ import (
 func main() {
 	cmd.Execute()
 }
-
