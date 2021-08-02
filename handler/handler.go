@@ -95,8 +95,8 @@ func JsonrespInterOperationNotAllowed(err error) Jsonresp {
 	return Jsonresp{"4002", 200, msg, nil}
 }
 
-func JsonrespInterBadToken(err error) Jsonresp {
-	msg := fmt.Sprintf("Bad token: %s", err.Error())
+func JsonrespInterForbidden(err error) Jsonresp {
+	msg := fmt.Sprintf("Forbidden: %s", err.Error())
 	return Jsonresp{"4003", 200, msg, nil}
 }
 

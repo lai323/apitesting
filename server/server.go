@@ -3,10 +3,10 @@ package server
 import (
 	"apitesting/handler"
 	"apitesting/middleware"
-	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
@@ -43,8 +43,10 @@ func Run() {
 	userRouter.Path("/testing/admin/api/del").Handler(handler.DelApi)
 	userRouter.Path("/testing/admin/testing/del").Handler(handler.DelTesting)
 
-	userRouter.Use(middleware.UserAuth)
-	adminRouter.Use(middleware.AdminAuth)
+	userRouter.Use(middleware.LogRequest, middleware.UserAuth)
+	adminRouter.Use(middleware.LogRequest, middleware.AdminAuth)
 
-	log.Fatal(http.ListenAndServe(viper.GetString("addr"), r))
+	addr := viper.GetString("addr")
+	logrus.Infof("ListenAndServe at %s", addr)
+	logrus.Fatal(http.ListenAndServe(addr, r))
 }
