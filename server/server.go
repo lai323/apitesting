@@ -1,6 +1,7 @@
 package server
 
 import (
+	"apitesting/entity"
 	"apitesting/handler"
 	"apitesting/middleware"
 	"net/http"
@@ -10,7 +11,14 @@ import (
 	"github.com/spf13/viper"
 )
 
-func Run() {
+func InitDB() {
+	err := entity.Install()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func Serve() {
 	r := mux.NewRouter()
 	userRouter := r.NewRoute().Subrouter()
 	adminRouter := r.NewRoute().Subrouter()

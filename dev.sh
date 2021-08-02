@@ -2,4 +2,4 @@
 set -e
 
 go build -o ./dist/apitesting-dev main.go
-./dist/apitesting-dev run --config ./config.toml
+./dist/apitesting-dev --config ./config.toml

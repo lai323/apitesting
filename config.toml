@@ -2,7 +2,7 @@
 addr = ":8000"
 
 [sqlite]
-dbfile = "/data/apitesting.db"
+dbfile = "./apitesting.db"
 # 允许 silent error warn info 默认 warn
 loglevel = "info"
 
