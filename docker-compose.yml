@@ -4,10 +4,7 @@ services:
   apitesting:
     image: apitesting:${APITESTING_IMG_VER}
     container_name: apitesting
-    command: run 
-            --config /etc/apitesting/config.toml
-            --server "http"
-            --mode ${APITESTING_CONFIG_MODE}
+    command: --config /etc/apitesting/config.toml
     restart: on-failure
     network_mode: "host"
     logging:
