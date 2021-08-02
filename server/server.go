@@ -6,6 +6,7 @@ import (
 	"apitesting/middleware"
 	"net/http"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -56,5 +57,9 @@ func Serve() {
 
 	addr := viper.GetString("addr")
 	logrus.Infof("ListenAndServe at %s", addr)
-	logrus.Fatal(http.ListenAndServe(addr, r))
+	logrus.Fatal(http.ListenAndServe(addr, handlers.CORS(
+		handlers.AllowedOriginValidator(func(s string) bool { return true }),
+		handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"}),
+		handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "token"}),
+	)(r)))
 }

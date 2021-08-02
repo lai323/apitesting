@@ -6,6 +6,7 @@ require (
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-playground/validator/v10 v10.8.0
+	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jehiah/go-strftime v0.0.0-20171201141054-1d33003b3869 // indirect
@@ -17,7 +18,6 @@ require (
 	github.com/pelletier/go-toml v1.9.3 // indirect
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/sirupsen/logrus v1.2.0
-	github.com/spf13/afero v1.1.2
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
