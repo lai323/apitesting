@@ -18,11 +18,11 @@ type SyncApiReq struct {
 	Entities []Entity `valid:"Required"`
 }
 
-var SyncApi = JsonHandlerFunc(func(r *http.Request) (interface{}, error) {
+var SyncApi = JsonHandlerFunc(func(r *http.Request) Jsonresp {
 	req := SyncApiReq{}
 	err := Validate(r, &req)
 	if err != nil {
-		return JsonrespInterParamsErr(err), nil
+		return JsonrespInterParamsErr(err)
 	}
 
 	err = entity.GormDB().Transaction(func(tx *gorm.DB) error {
@@ -49,7 +49,7 @@ var SyncApi = JsonHandlerFunc(func(r *http.Request) (interface{}, error) {
 	})
 
 	if err != nil {
-		return JsonrespInterServerErr(err), nil
+		return JsonrespInterServerErr(err)
 	}
-	return JsonrespSuccess(nil), nil
+	return JsonrespSuccess(nil)
 })

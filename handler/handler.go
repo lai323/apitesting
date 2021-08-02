@@ -46,14 +46,14 @@ func Validate(r *http.Request, dst interface{}) error {
 }
 
 type JsonServer interface {
-	Serve(r *http.Request) (interface{}, error)
+	Serve(r *http.Request) Jsonresp
 }
 
 func JsonHandler(s JsonServer) http.Handler {
 	return JsonHandlerFunc(s.Serve)
 }
 
-type JsonHandlerFunc func(r *http.Request) (interface{}, error)
+type JsonHandlerFunc func(r *http.Request) Jsonresp
 
 func (f JsonHandlerFunc) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	defer func() {
@@ -66,15 +66,8 @@ func (f JsonHandlerFunc) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			WriteJsonresp(JsonrespInterServerErr(err), w)
 		}
 	}()
-	resp, err := f(r)
 
-	var jsonresp Jsonresp
-	if err != nil {
-		jsonresp = JsonrespInterServerErr(err)
-	} else {
-		jsonresp = JsonrespSuccess(resp)
-	}
-	WriteJsonresp(jsonresp, w)
+	WriteJsonresp(f(r), w)
 }
 
 func JsonrespSuccess(data interface{}) Jsonresp {

@@ -9,18 +9,18 @@ type DelReq struct {
 	ID uint `validate:"required"`
 }
 
-func NewDelFunc(t entity.FromIdDeleter) func(*http.Request) (interface{}, error) {
-	return func(r *http.Request) (interface{}, error) {
+func NewDelFunc(t entity.FromIdDeleter) func(*http.Request) Jsonresp {
+	return func(r *http.Request) Jsonresp {
 		req := DelReq{}
 		err := Validate(r, &req)
 		if err != nil {
-			return JsonrespInterParamsErr(err), nil
+			return JsonrespInterParamsErr(err)
 		}
 		err = t.FromIdDel(req.ID)
 		if err != nil {
-			return JsonrespInterServerErr(err), nil
+			return JsonrespInterServerErr(err)
 		}
-		return JsonrespSuccess(nil), nil
+		return JsonrespSuccess(nil)
 	}
 }
 

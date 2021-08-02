@@ -5,10 +5,10 @@ import (
 	"net/http"
 )
 
-var AdminId = JsonHandlerFunc(func(r *http.Request) (interface{}, error) {
+var AdminId = JsonHandlerFunc(func(r *http.Request) Jsonresp {
 	id, err := entity.User{}.AdminId()
 	if err != nil {
-		return JsonrespInterServerErr(err), nil
+		return JsonrespInterServerErr(err)
 	}
-	return JsonrespSuccess(id), nil
+	return JsonrespSuccess(id)
 })

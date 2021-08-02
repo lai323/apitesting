@@ -9,19 +9,19 @@ type SaveReq struct {
 	Entity map[string]interface{}
 }
 
-func NewSaveFunc(t entity.FromIdSaver) func(*http.Request) (interface{}, error) {
-	return func(r *http.Request) (interface{}, error) {
+func NewSaveFunc(t entity.FromIdSaver) func(*http.Request) Jsonresp {
+	return func(r *http.Request) Jsonresp {
 		req := SaveReq{}
 		err := Validate(r, &req)
 		if err != nil {
-			return JsonrespInterParamsErr(err), nil
+			return JsonrespInterParamsErr(err)
 		}
 
 		err, _ = t.FromIdSave(req.Entity)
 		if err != nil {
-			return JsonrespInterServerErr(err), nil
+			return JsonrespInterServerErr(err)
 		}
-		return JsonrespSuccess(nil), nil
+		return JsonrespSuccess(nil)
 	}
 }
 
