@@ -6,6 +6,14 @@
 
 #### 功能截图
 
+设置环境变量
+![](imgs/env.png)
+创建 api
+![](imgs/api.png)
+创建测试
+![](imgs/testing.png)
+使用测试脚本
+![](imgs/script.png)
 
 
 #### 为什么不直接使用 postman ?
