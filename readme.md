@@ -4,7 +4,7 @@
 
 有和 postman 类似的测试脚本支持，支持多个请求前后依赖的测试
 
-## 功能截图
+### 功能截图
 
 设置环境变量
 ![](imgs/env.png)
@@ -16,11 +16,11 @@
 ![](imgs/script.png)
 
 
-## 为什么不直接使用 postman ?
+### 为什么不直接使用 postman ?
 
 - postman 团队使用是收费的
 - postman 不是开源的，使用这个你可以添加自己的需求
 
-## 使用的组件
+### 使用的组件
 
 Vuejs / Element Plus / SQLite
